@@ -14,10 +14,10 @@ app.http('getItems', {
     route: 'items',
     handler: async (request, context) => {
         const items = context.extraInputs.get(cosmosInput);
-        console.log("..........................", items)
-            return {
-                body: JSON.stringify(items),
-            };
+        return {
+            body: JSON.stringify(items),
+            status: 200
+        };
     }
 
 });
