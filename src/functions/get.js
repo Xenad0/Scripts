@@ -1,13 +1,20 @@
 const { app } = require('@azure/functions');
 
+const cosmosInput = input.cosmosDB({
+    databaseName: 'DemoDatabase',
+    collectionName: 'DemoContainer1',
+    partitionKey: 'id',
+    connectionStringSetting: 'CosmosDbConnectionString',
+});
+
 app.http('get', {
-    methods: ['GET', 'POST'],
+    methods: ['GET'],
     authLevel: 'anonymous',
+    extraInputs: [cosmosInput],
     handler: async (request, context) => {
-        context.log(`Http function processed request for url "${request.url}"`);
-
-        const name = request.query.get('name') || await request.text() || 'world';
-
-        return { body: `Hello, ${name}!` };
+        const items = context.extraInputs.get(cosmosInput);
+            return {
+                body: items,
+            };
     }
 });
