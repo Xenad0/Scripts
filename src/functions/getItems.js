@@ -7,7 +7,7 @@ const cosmosInput = input.cosmosDB({
     sqlQuery: "select * from c"
 });
 
-app.http('get', {
+app.http('getItems', {
     methods: ['GET'],
     authLevel: 'anonymous',
     extraInputs: [cosmosInput],
