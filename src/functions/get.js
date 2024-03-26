@@ -1,4 +1,4 @@
-const { app } = require('@azure/functions');
+const { app,input } = require('@azure/functions');
 
 const cosmosInput = input.cosmosDB({
     databaseName: 'DemoDatabase',
