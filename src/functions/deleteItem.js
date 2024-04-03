@@ -14,12 +14,6 @@ app.http('deleteItem', {
     authLevel: 'anonymous',
     route: 'items/{id}',
     handler: async (request) => {
-        const timeStamp = new Date().toISOString();
-
-        console.log(request);
-        console.log("-------");
-        console.log(request.params.id);
-
         const database = client.database(databaseId);
         const container = database.container(containerId);
 
